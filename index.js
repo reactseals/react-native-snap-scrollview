@@ -71,7 +71,7 @@ class SnapScrollView extends Component {
     render() {
         const { children, contentContainerStyle, style, ...restProps } = this.props;
 
-        if (!Platform.isTV && Platform.OS !== 'ios') {
+        if (!Platform.isTVOS) {
             return <Scrollview {...this.props}>{children}</Scrollview>;
         }
 
