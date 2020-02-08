@@ -1,6 +1,6 @@
 //
-//  SnapScrollviewManager.swift
-//  SnapScrollview
+//  SnapScrollViewManager.swift
+//  SnapScrollView
 //
 //  Created by Aurimas on 2020-01-19.
 //  Copyright © 2020 Facebook. All rights reserved.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-@objc(SnapScrollviewManager)
+@objc(SnapScrollViewManager)
 class SnapScrollviewManager : RCTViewManager {
     override func view() -> UIView? {
-        return SnapScrollview(eventDispatcher: self.bridge.eventDispatcher())
+        return SnapScrollView(eventDispatcher: self.bridge.eventDispatcher())
   }
 
     @objc func updateContentOffset(_ node: NSNumber) {

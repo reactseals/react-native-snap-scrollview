@@ -1,7 +1,7 @@
 import UIKit
 
-@objc(SnapScrollview)
-class SnapScrollview: RCTScrollView {
+@objc(SnapScrollView)
+class SnapScrollView: RCTScrollView {
     private var snapPoints: [Int] = []
     private var alignFocusedViewY: Bool = false
     private var offsetFromFocusedView: Int = 0

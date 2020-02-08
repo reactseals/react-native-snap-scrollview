@@ -4,13 +4,13 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTScrollView.h>
 
-@interface SnapScrollview : RCTView
+@interface SnapScrollView : RCTView
     @property (nonatomic, assign) NSArray *snapPoints;
     @property (nonatomic, assign) BOOL *alignFocusedViewY;
     @property (nonatomic, assign) NSInteger *offsetFromFocusedView;
 @end
 
-@interface RCT_EXTERN_MODULE(SnapScrollviewManager, RCTViewManager)
+@interface RCT_EXTERN_MODULE(SnapScrollViewManager, RCTViewManager)
 
 RCT_EXTERN_METHOD(updateContentOffset:(nonnull NSNumber *)node)
 
