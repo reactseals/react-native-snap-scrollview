@@ -1,7 +1,15 @@
 /* eslint-disable id-length */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { requireNativeComponent, View, UIManager, StyleSheet, findNodeHandle } from 'react-native';
+import {
+    requireNativeComponent,
+    View,
+    UIManager,
+    StyleSheet,
+    Platform,
+    Scrollview,
+    findNodeHandle,
+} from 'react-native';
 
 const NativeScrollView = requireNativeComponent('SnapScrollView');
 
@@ -62,6 +70,10 @@ class SnapScrollView extends Component {
 
     render() {
         const { children, contentContainerStyle, style, ...restProps } = this.props;
+
+        if (!Platform.isTV && Platform.OS !== 'ios') {
+            return <Scrollview {...this.props}>{children}</Scrollview>;
+        }
 
         const baseStyle = [
             style,
