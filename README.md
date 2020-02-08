@@ -6,10 +6,12 @@
 
 ```javascript
 import SnapScrollView from 'react-native-snap-scrollview';
+
 <SnapScrollView
     snapPoints={[]}
     alignFocusedViewY={false}
     offsetFromFocusedView={0}
+    startSnapFromY={0}
 />
 ```
 

@@ -8,6 +8,7 @@
     @property (nonatomic, assign) NSArray *snapPoints;
     @property (nonatomic, assign) BOOL *alignFocusedViewY;
     @property (nonatomic, assign) NSInteger *offsetFromFocusedView;
+    @property (nonatomic, assign) NSInteger *startSnapFromY;
 @end
 
 @interface RCT_EXTERN_MODULE(SnapScrollViewManager, RCTViewManager)
@@ -19,6 +20,7 @@ RCT_EXTERN_METHOD(scrollTo:(nonnull NSNumber *)reactTag offsetX:(CGFloat)x offse
 RCT_EXPORT_VIEW_PROPERTY(snapPoints, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(alignFocusedViewY, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(offsetFromFocusedView, NSInteger)
+RCT_EXPORT_VIEW_PROPERTY(startSnapFromY, NSInteger)
 
 //default properties
 RCT_EXPORT_VIEW_PROPERTY(bounces, BOOL)

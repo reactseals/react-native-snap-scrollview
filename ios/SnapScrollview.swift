@@ -5,6 +5,7 @@ class SnapScrollView: RCTScrollView {
     private var snapPoints: [Int] = []
     private var alignFocusedViewY: Bool = false
     private var offsetFromFocusedView: Int = 0
+    private var startSnapFromY: Int = 0
 
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if (snapPoints.count != 0) {
@@ -14,7 +15,9 @@ class SnapScrollView: RCTScrollView {
             let focusedViewOffsetFromTop = Int(buttonAbsoluteFrame?.minY ?? targetContentOffset.pointee.y)
             let closestPoint = snapPoints.reduce(snapPoints.first!) { abs($1 - focusedViewOffsetFromTop) < abs($0 - focusedViewOffsetFromTop) ? $1 : $0 }
 
-            targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(closestPoint - offsetFromFocusedView))
+            if (closestPoint >= startSnapFromY) {
+                targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(closestPoint - offsetFromFocusedView))
+            }
         }
 
         if (self.alignFocusedViewY == true) {
@@ -25,7 +28,9 @@ class SnapScrollView: RCTScrollView {
                 let focusedViewOffsetFromTop = Int(buttonAbsoluteFrame?.minY ?? targetContentOffset.pointee.y)
                 let minY = focusedViewOffsetFromTop - offsetFromFocusedView
 
-                targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(minY))
+                if (minY >= startSnapFromY) {
+                    targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(minY))
+                }
             }
         }
     }
@@ -43,5 +48,10 @@ class SnapScrollView: RCTScrollView {
     @objc(setOffsetFromFocusedView:)
     public func setOffsetFromFocusedView(offsetFromFocusedView: Int) {
         self.offsetFromFocusedView = offsetFromFocusedView
+    }
+
+    @objc(setStartSnapFromY:)
+    public func setStartSnapFromY(startSnapFromY: Int) {
+        self.startSnapFromY = startSnapFromY
     }
 }

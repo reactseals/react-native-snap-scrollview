@@ -36,12 +36,20 @@ class SnapScrollView extends Component {
         children: PropTypes.node,
         contentContainerStyle: PropTypes.shape({}),
         style: PropTypes.shape({}),
+        startSnapFromY: PropTypes.number,
+        offsetFromFocusedView: PropTypes.number,
+        alignFocusedViewY: PropTypes.bool,
+        snapPoints: PropTypes.arrayOf(PropTypes.number),
     };
 
     static defaultProps = {
         children: null,
         contentContainerStyle: {},
         style: {},
+        startSnapFromY: 0,
+        offsetFromFocusedView: 0,
+        alignFocusedViewY: false,
+        snapPoints: [],
     };
 
     componentDidMount() {
