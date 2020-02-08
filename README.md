@@ -1,1 +1,1 @@
-# thanos-sdk-scrollview
+# react-native-snap-scrollview
