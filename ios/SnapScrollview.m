@@ -13,6 +13,7 @@
 @interface RCT_EXTERN_MODULE(SnapScrollViewManager, RCTViewManager)
 
 RCT_EXTERN_METHOD(updateContentOffset:(nonnull NSNumber *)node)
+RCT_EXTERN_METHOD(scrollTo:(nonnull NSNumber *)reactTag offsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated)
 
 //custom properties
 RCT_EXPORT_VIEW_PROPERTY(snapPoints, NSArray)

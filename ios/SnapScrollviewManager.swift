@@ -25,6 +25,17 @@ class SnapScrollviewManager : RCTViewManager {
         })
     }
 
+    @objc func scrollTo(_ node: NSNumber, offsetX x: CGFloat, offsetY y: CGFloat, animated: Bool) {
+        self.bridge.uiManager.addUIBlock({ uiManager, viewRegistry in
+            let view = viewRegistry?[node]
+            if view is RCTScrollableProtocol {
+                let point: CGPoint = CGPoint(x: x, y: y)
+                (view as? RCTScrollableProtocol?)??.scroll(toOffset: point, animated: animated)
+            }
+        })
+
+    }
+
     override static func requiresMainQueueSetup() -> Bool {
       return false
     }
