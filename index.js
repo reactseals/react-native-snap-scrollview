@@ -39,7 +39,7 @@ class SnapScrollView extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.updateContentOffset();
-        }, 100);
+        }, 10);
     }
 
     updateContentOffset = () => {

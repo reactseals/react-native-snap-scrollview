@@ -5,7 +5,6 @@ class SnapScrollView: RCTScrollView {
     private var snapPoints: [Int] = []
     private var alignFocusedViewY: Bool = false
     private var offsetFromFocusedView: Int = 0
-    private var lastFocusPosition: Int = 0
 
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if (snapPoints.count != 0) {
