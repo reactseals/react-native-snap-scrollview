@@ -13,9 +13,9 @@ class SnapScrollView: RCTScrollView {
             let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 0))
             let buttonAbsoluteFrame = focusedView?.convert(focusedView?.bounds ?? rect, to: scrollView)
             let focusedViewOffsetFromTop = Int(buttonAbsoluteFrame?.minY ?? targetContentOffset.pointee.y)
-            let closestPoint = snapPoints.reduce(snapPoints.first!) { abs($1 - focusedViewOffsetFromTop) < abs($0 - focusedViewOffsetFromTop) ? $1 : $0 }
 
-            if (closestPoint >= startSnapFromY) {
+            if (focusedViewOffsetFromTop >= startSnapFromY) {
+                let closestPoint = snapPoints.reduce(snapPoints.first!) { abs($1 - focusedViewOffsetFromTop) < abs($0 - focusedViewOffsetFromTop) ? $1 : $0 }
                 targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(closestPoint - offsetFromFocusedView))
             }
         }
@@ -28,7 +28,7 @@ class SnapScrollView: RCTScrollView {
                 let focusedViewOffsetFromTop = Int(buttonAbsoluteFrame?.minY ?? targetContentOffset.pointee.y)
                 let minY = focusedViewOffsetFromTop - offsetFromFocusedView
 
-                if (minY >= startSnapFromY) {
+                if (focusedViewOffsetFromTop >= startSnapFromY) {
                     targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(minY))
                 }
             }

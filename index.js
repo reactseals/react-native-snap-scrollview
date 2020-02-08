@@ -55,7 +55,14 @@ class SnapScrollView extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.updateContentOffset();
-        }, 10);
+        }, 1);
+    }
+
+    componentDidUpdate() {
+        // TODO UPDATE ONLY WHEN LAYOUT SIZE CHANGES
+        setTimeout(() => {
+            this.updateContentOffset();
+        }, 1);
     }
 
     updateContentOffset = () => {
