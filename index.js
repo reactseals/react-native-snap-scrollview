@@ -7,7 +7,7 @@ import {
     UIManager,
     StyleSheet,
     Platform,
-    Scrollview,
+    ScrollView,
     findNodeHandle,
 } from 'react-native';
 
@@ -66,12 +66,14 @@ class SnapScrollView extends Component {
     }
 
     updateContentOffset = () => {
-        const scrollableNode = findNodeHandle(this.snapSv);
-        UIManager.dispatchViewManagerCommand(
-            scrollableNode,
-            UIManager.SnapScrollView.Commands.updateContentOffset,
-            []
-        );
+        if (Platform.isTVOS) {
+            const scrollableNode = findNodeHandle(this.snapSv);
+            UIManager.dispatchViewManagerCommand(
+                scrollableNode,
+                UIManager.SnapScrollView.Commands.updateContentOffset,
+                []
+            );
+        }
     };
 
     scrollTo = ({ x, y, animated }) => {
@@ -87,7 +89,7 @@ class SnapScrollView extends Component {
         const { children, contentContainerStyle, style, ...restProps } = this.props;
 
         if (!Platform.isTVOS) {
-            return <Scrollview {...this.props}>{children}</Scrollview>;
+            return <ScrollView {...this.props}>{children}</ScrollView>;
         }
 
         const baseStyle = [
