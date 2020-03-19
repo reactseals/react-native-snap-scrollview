@@ -85,10 +85,20 @@ class SnapScrollView extends Component {
         );
     };
 
+    action = () => {
+        const scrollableNode = findNodeHandle(this.snapSv);
+        UIManager.dispatchViewManagerCommand(
+            scrollableNode,
+            UIManager.SnapScrollView.Commands.printData,
+            ['Show console.log']
+        );
+    };
+
     render() {
         const { children, contentContainerStyle, style, ...restProps } = this.props;
 
         if (!Platform.isTVOS) {
+            this.action();
             return <ScrollView {...this.props}>{children}</ScrollView>;
         }
 

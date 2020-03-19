@@ -13,11 +13,15 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class SnapScrollviewPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new SnapScrollviewModule(reactContext));
+        return Collections.emptyList();
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+        return Arrays.<ViewManager>asList(new SnapScrollviewModule());
+    }
+
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
 }

@@ -1,27 +1,59 @@
 package com.reactlibrary;
 
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.common.MapBuilder;
+import com.facebook.react.uimanager.SimpleViewManager;
+import com.facebook.react.uimanager.ThemedReactContext;
+import com.facebook.react.uimanager.annotations.ReactProp;
 
-public class SnapScrollviewModule extends ReactContextBaseJavaModule {
+import java.util.HashMap;
+import java.util.Map;
 
-    private final ReactApplicationContext reactContext;
+import javax.annotation.Nullable;
 
-    public SnapScrollviewModule(ReactApplicationContext reactContext) {
-        super(reactContext);
-        this.reactContext = reactContext;
+public class SnapScrollviewModule extends SimpleViewManager<SnapScrollView> {
+    
+    @Override
+    public String getName(){
+        return "SnapScrollView";
     }
 
     @Override
-    public String getName() {
-        return "SnapScrollview";
+    protected SnapScrollView createViewInstance(ThemedReactContext context){
+        return new SnapScrollView(context);
     }
 
-    @ReactMethod
-    public void sampleMethod(String stringArgument, int numberArgument, Callback callback) {
-        // TODO: Implement some actually useful functionality
-        callback.invoke("Received numberArgument: " + numberArgument + " stringArgument: " + stringArgument);
+    @Override
+    public Map<String,Integer> getCommandsMap(){
+        Map<String, Integer> map = new HashMap<>();
+
+        map.put("printData", COMMAND_PRINT);
+
+        return map;
+    }
+
+    @ReactProp(data = "data")
+    public void printData(String data){
+        System.out.println(data);
+    } 
+
+    @Override
+    public void receiveCommand(SnapScrollView view, int commandType, @Nullable ReadableArray args) {
+        switch (commandType) {
+            case COMMAND_PRINT: {
+                view.printData(args.getString(0));
+                return;
+            }
+            default:
+                throw new IllegalArgumentException(String.format(
+                        "Unsupported command %d received by %s.",
+                        commandType,
+                        getClass().getSimpleName()));
+        }
+    }
+
+    public Map getExportedCustomBubblingEventTypeConstants() {
+        return MapBuilder.builder();
     }
 }
