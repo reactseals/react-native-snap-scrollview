@@ -13,10 +13,13 @@ class SnapScrollView: RCTScrollView {
             let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 0))
             let buttonAbsoluteFrame = focusedView?.convert(focusedView?.bounds ?? rect, to: scrollView)
             let focusedViewOffsetFromTop = Int(buttonAbsoluteFrame?.minY ?? targetContentOffset.pointee.y)
+            let maxOffsetY: CGFloat = scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom;
 
             if (focusedViewOffsetFromTop >= startSnapFromY) {
-                let closestPoint = snapPoints.reduce(snapPoints.first!) { abs($1 - focusedViewOffsetFromTop) < abs($0 - focusedViewOffsetFromTop) ? $1 : $0 }
-                targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(closestPoint - offsetFromFocusedView))
+                let closestPoint: CGFloat = CGFloat(snapPoints.reduce(snapPoints.first!) { abs($1 - focusedViewOffsetFromTop) < abs($0 - focusedViewOffsetFromTop) ? $1 : $0 })
+
+                targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: maxOffsetY < closestPoint ? maxOffsetY : (closestPoint - CGFloat(offsetFromFocusedView)))
+                
             }
         }
 
@@ -26,10 +29,11 @@ class SnapScrollView: RCTScrollView {
                 let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 0))
                 let buttonAbsoluteFrame = focusedView?.convert(focusedView?.bounds ?? rect, to: scrollView)
                 let focusedViewOffsetFromTop = Int(buttonAbsoluteFrame?.minY ?? targetContentOffset.pointee.y)
-                let minY = focusedViewOffsetFromTop - offsetFromFocusedView
+                let maxOffsetY: CGFloat = scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom;
+                let minY: CGFloat = CGFloat(focusedViewOffsetFromTop - offsetFromFocusedView);
 
                 if (focusedViewOffsetFromTop >= startSnapFromY) {
-                    targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(minY))
+                    targetContentOffset.pointee = CGPoint(x: CGFloat(targetContentOffset.pointee.x), y: CGFloat(maxOffsetY < minY ? maxOffsetY : minY))
                 }
             }
         }
