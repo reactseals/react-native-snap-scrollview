@@ -66,7 +66,7 @@ class SnapScrollView extends Component {
     }
 
     updateContentOffset = () => {
-        if (Platform.isTVOS) {
+        if (Platform.isTVOS && this.snapSv) {
             const scrollableNode = findNodeHandle(this.snapSv);
             UIManager.dispatchViewManagerCommand(
                 scrollableNode,
@@ -104,7 +104,7 @@ class SnapScrollView extends Component {
 
         return (
             <NativeScrollView
-                ref={node => {
+                ref={(node) => {
                     this.snapSv = node;
                 }}
                 style={baseStyle}
