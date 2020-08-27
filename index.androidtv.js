@@ -27,12 +27,12 @@ let RCTScrollView;
 let RCTScrollContentView;
 
 if (Platform.OS === 'android') {
-    AndroidScrollView = requireNativeComponent("TurboScrollview", null);
+    AndroidScrollView = requireNativeComponent("SnapScrollview", null);
     AndroidHorizontalScrollView = requireNativeComponent(
-        'TurboHorizontalScrollview', null
+        'SnapHorizontalScrollview', null
     );
     AndroidHorizontalScrollContentView = requireNativeComponent(
-        'TurboHorizontalScrollContainerView',
+        'SnapHorizontalScrollContainerView',
     );
 }
 
