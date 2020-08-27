@@ -11,7 +11,7 @@ const SV = React.forwardRef(({ children, ...props }, ref) => {
         return <AndroidTVSnapScrollView ref={ref} {...props}>{children}</AndroidTVSnapScrollView>;
     }
 
-    return <ScrollView ref={ref} {...props}>{children}</ScrollView>;;
+    return <ScrollView ref={ref} {...props}>{children}</ScrollView>;
 });
 
 export default SV;
