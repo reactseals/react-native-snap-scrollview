@@ -27,9 +27,9 @@ import com.facebook.react.uimanager.annotations.ReactPropGroup;
 import com.facebook.react.views.scroll.FpsListener;
 import com.facebook.react.views.scroll.ScrollEventType;
 import com.facebook.yoga.YogaConstants;
-import com.reactlibrary.SnapScrollview;
-import com.reactlibrary.SnapScrollviewCommandHelper;
-import com.reactlibrary.SnapScrollviewHelper;
+import com.rs.snapscrollview.SnapScrollview;
+import com.rs.snapscrollview.SnapScrollviewCommandHelper;
+import com.rs.snapscrollview.SnapScrollviewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
