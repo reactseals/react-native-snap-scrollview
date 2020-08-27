@@ -25,12 +25,12 @@ const nullthrows = require("nullthrows");
 const performanceNow = require("fbjs/lib/performanceNow");
 const warning = require("fbjs/lib/warning");
 
-const { TurboScrollviewManager } = NativeModules;
+const { SnapScrollviewManager } = NativeModules;
 
 import type { PressEvent, ScrollEvent } from "CoreEventTypes";
 import type { KeyboardEvent } from "Keyboard";
 import type EmitterSubscription from "EmitterSubscription";
-// const TurboScrollview = requireNativeComponent("TurboScrollview", null);
+// const SnapScrollview = requireNativeComponent("SnapScrollview", null);
 /**
  * Mixin that can be integrated in order to handle scrolling that plays well
  * with `ResponderEventPlugin`. Integrate with your platform specific scroll
@@ -464,7 +464,7 @@ const ScrollResponderMixin = {
     console.log(duration);
     UIManager.dispatchViewManagerCommand(
       nullthrows(this.scrollResponderGetScrollableNode()),
-      UIManager.getViewManagerConfig("TurboScrollview").Commands.scrollTo,
+      UIManager.getViewManagerConfig("SnapScrollview").Commands.scrollTo,
       [x || 0, y || 0, animated !== false, getDuration(duration)]
     );
   },
@@ -523,7 +523,7 @@ const ScrollResponderMixin = {
     animated?: boolean // deprecated, put this inside the rect argument instead
   ) {
     invariant(
-      TurboScrollviewManager && TurboScrollviewManager.zoomToRect,
+      SnapScrollviewManager && SnapScrollviewManager.zoomToRect,
       "zoomToRect is not implemented"
     );
     if ("animated" in rect) {
@@ -534,7 +534,7 @@ const ScrollResponderMixin = {
         "`scrollResponderZoomTo` `animated` argument is deprecated. Use `options.animated` instead"
       );
     }
-    TurboScrollviewManager.zoomToRect(
+    SnapScrollviewManager.zoomToRect(
       this.scrollResponderGetScrollableNode(),
       rect,
       animated !== false
