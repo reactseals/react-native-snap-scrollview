@@ -1,45 +1,45 @@
 {
-  "name": "react-native-snap-scrollview",
-  "title": "React Native Snap Scrollview",
-  "version": "1.0.1",
-  "description": "TODO",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/github_account/react-native-snap-scrollview.git",
-    "baseUrl": "https://github.com/github_account/react-native-snap-scrollview"
-  },
-  "keywords": [
-    "react-native"
-  ],
-  "author": {
-    "name": "Aurimas Mickys",
-    "email": "aurimasmickys@reactseals.com"
-  },
-  "license": "MIT",
-  "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
-  "peerDependencies": {
-    "react": "^16.8.1",
-    "react-native": ">=0.59.0-rc.0 <1.0.x"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "5.*",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-import-resolver-babel-module": "5.0.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-mocha": "5.3.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "1.6.1",
-    "prettier": "^1.19.1",
-    "react": "^16.8.3",
-    "react-native": "^0.59.10"
-  }
+    "name": "react-native-snap-scrollview",
+    "title": "React Native Snap Scrollview",
+    "version": "1.0.2",
+    "description": "TODO",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/github_account/react-native-snap-scrollview.git",
+        "baseUrl": "https://github.com/github_account/react-native-snap-scrollview"
+    },
+    "keywords": [
+        "react-native"
+    ],
+    "author": {
+        "name": "Aurimas Mickys",
+        "email": "aurimasmickys@reactseals.com"
+    },
+    "license": "MIT",
+    "licenseFilename": "LICENSE",
+    "readmeFilename": "README.md",
+    "peerDependencies": {
+        "react": "^16.8.1",
+        "react-native": ">=0.59.0-rc.0 <1.0.x"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.0.3",
+        "eslint": "5.*",
+        "eslint-config-airbnb": "17.1.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-import-resolver-babel-module": "5.0.1",
+        "eslint-plugin-import": "^2.20.1",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-mocha": "5.3.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "eslint-plugin-react": "7.14.3",
+        "eslint-plugin-react-hooks": "1.6.1",
+        "prettier": "^1.19.1",
+        "react": "^16.8.3",
+        "react-native": "^0.59.10"
+    }
 }
