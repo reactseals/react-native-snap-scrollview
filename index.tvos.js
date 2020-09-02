@@ -223,12 +223,13 @@ class ScrollView extends React.Component {
             animated = options.animated;
             duration = options.duration;
         }
-        // this._scrollResponder.scrollResponderScrollTo({
-        //     x: x || 0,
-        //     y: y || 0,
-        //     animated: animated !== false,
-        //     duration: duration,
-        // });
+        
+        const scrollableNode = findNodeHandle(this._scrollViewRef);
+        UIManager.dispatchViewManagerCommand(
+            scrollableNode,
+            UIManager.SnapScrollView.Commands.scrollTo,
+            [x || 0, y || 0, animated !== false]
+        );
     }
 
     /**
