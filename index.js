@@ -15,15 +15,31 @@ const SV = React.forwardRef(({ children, ...props }, ref) => {
         setSnapPoints(Object.values(snapPointsHolder).map(point => parseInt(point, 10)));
     };
 
-    const content = React.Children.map(children, (child, index) => {
-        if (child.props.setSnapPoint) {
-            return React.cloneElement(child, {
-                ...child.props,
-                onLayout: event => onLayout(event, index),
-            });
-        }
-        return React.cloneElement(child);
-    });
+    const recursiveMap = children =>
+        React.Children.map(children, (child, index) => {
+            if (!React.isValidElement(child)) {
+                return child;
+            }
+
+            if (child.props.children) {
+                child = React.cloneElement(child, {
+                    children: recursiveMap(child.props.children),
+                });
+            }
+
+            if (child.props.setSnapPoint) {
+                return React.cloneElement(child, {
+                    ...child.props,
+                    onLayout: event => onLayout(event, index),
+                });
+            }
+
+            return child;
+        });
+
+    const content = React.Children.map(children, child =>
+        React.cloneElement(recursiveMap(child)[0])
+    );
 
     if (Platform.isTVOS) {
         return (
