@@ -5,7 +5,7 @@ import TVOSSnapScrollView from './index.tvos';
 
 let snapPointsHolder = {};
 
-const SV = React.forwardRef(({ children, ...props }, ref) => {
+const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }, ref) => {
     const [snapPoints, setSnapPoints] = useState([]);
 
     const onLayout = (event, index) => {
@@ -43,14 +43,18 @@ const SV = React.forwardRef(({ children, ...props }, ref) => {
 
     if (Platform.isTVOS) {
         return (
-            <TVOSSnapScrollView ref={ref} {...props} snapPoints={snapPoints}>
+            <TVOSSnapScrollView ref={ref} {...props} snapPoints={propsSnapPoints || snapPoints}>
                 {content}
             </TVOSSnapScrollView>
         );
     }
     if (Platform.OS === 'android' && Platform.isTV) {
         return (
-            <AndroidTVSnapScrollView ref={ref} {...props} snapPoints={snapPoints}>
+            <AndroidTVSnapScrollView
+                ref={ref}
+                {...props}
+                snapPoints={propsSnapPoints || snapPoints}
+            >
                 {content}
             </AndroidTVSnapScrollView>
         );
