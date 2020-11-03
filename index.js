@@ -38,7 +38,8 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
         });
 
     const content = React.Children.map(children, (child, index) =>
-        React.cloneElement(recursiveMap(child, index)[0])
+         child ? React.cloneElement(recursiveMap(child, index)[0]) : null;
+ 
     );
 
     if (Platform.isTVOS) {
