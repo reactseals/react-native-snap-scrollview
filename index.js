@@ -12,7 +12,7 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
         const { layout } = event.nativeEvent;
 
         snapPointsHolder = { ...snapPointsHolder, [index]: Math.round(layout.y) };
-        setSnapPoints(Object.values(snapPointsHolder).map(point => parseInt(point, 10)));
+        setSnapPoints(Object.values(snapPointsHolder).map((point) => parseInt(point, 10)));
     };
 
     const recursiveMap = (children, index) =>
@@ -30,7 +30,7 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
             if (child.props.setSnapPoint) {
                 return React.cloneElement(child, {
                     ...child.props,
-                    onLayout: event => onLayout(event, index),
+                    onLayout: (event) => onLayout(event, index),
                 });
             }
 
@@ -38,8 +38,7 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
         });
 
     const content = React.Children.map(children, (child, index) =>
-         child ? React.cloneElement(recursiveMap(child, index)[0]) : null;
- 
+        child ? React.cloneElement(recursiveMap(child, index)[0]) : null
     );
 
     if (Platform.isTVOS) {
