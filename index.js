@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle } from 'react';
 import { ScrollView, Platform } from 'react-native';
 import AndroidTVSnapScrollView from './index.androidtv';
 import TVOSSnapScrollView from './index.tvos';
@@ -14,6 +14,12 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
         snapPointsHolder = { ...snapPointsHolder, [index]: Math.round(layout.y) };
         setSnapPoints(Object.values(snapPointsHolder).map(point => parseInt(point, 10)));
     };
+
+    useImperativeHandle(ref, () => ({
+        onLayout: (event, index) => {
+            onLayout(event, index);
+        },
+    }));
 
     const recursiveMap = ch =>
         React.Children.map(ch, child => {
