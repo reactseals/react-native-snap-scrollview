@@ -40,6 +40,7 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
     const content = React.Children.map(children, child =>
         child ? React.cloneElement(recursiveMap(child)[0]) : null
     );
+
     if (Platform.isTVOS) {
         return (
             <TVOSSnapScrollView ref={ref} {...props} snapPoints={propsSnapPoints || snapPoints}>
