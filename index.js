@@ -15,32 +15,31 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
         setSnapPoints(Object.values(snapPointsHolder).map(point => parseInt(point, 10)));
     };
 
-    const recursiveMap = (children, index) =>
-        React.Children.map(children, (child, innerIndex) => {
+    const recursiveMap = ch =>
+        React.Children.map(ch, child => {
             if (!React.isValidElement(child)) {
                 return child;
             }
 
             if (child.props.children) {
                 child = React.cloneElement(child, {
-                    children: recursiveMap(child.props.children, innerIndex),
+                    children: recursiveMap(child.props.children),
                 });
             }
 
             if (child.props.setSnapPoint) {
                 return React.cloneElement(child, {
                     ...child.props,
-                    onLayout: event => onLayout(event, index),
+                    onLayout: event => onLayout(event, child.key),
                 });
             }
 
             return child;
         });
 
-    const content = React.Children.map(children, (child, index) =>
-        React.cloneElement(recursiveMap(child, index)[0])
+    const content = React.Children.map(children, child =>
+        child ? React.cloneElement(recursiveMap(child)[0]) : null
     );
-
     if (Platform.isTVOS) {
         return (
             <TVOSSnapScrollView ref={ref} {...props} snapPoints={propsSnapPoints || snapPoints}>
