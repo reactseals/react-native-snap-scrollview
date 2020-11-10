@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle } from 'react';
+import React, { useState, useImperativeHandle, useRef } from 'react';
 import { ScrollView, Platform } from 'react-native';
 import AndroidTVSnapScrollView from './index.androidtv';
 import TVOSSnapScrollView from './index.tvos';
@@ -7,6 +7,7 @@ let snapPointsHolder = {};
 
 const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }, ref) => {
     const [snapPoints, setSnapPoints] = useState([]);
+    const scrollViewRef = useRef(null);
 
     const onLayout = (event, index) => {
         const { layout } = event.nativeEvent;
@@ -18,6 +19,9 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
     useImperativeHandle(ref, () => ({
         onLayout: (event, index) => {
             onLayout(event, index);
+        },
+        scrollTo: args => {
+            scrollViewRef.current.scrollTo(args);
         },
     }));
 
@@ -46,10 +50,13 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
     const content = React.Children.map(children, child =>
         child ? React.cloneElement(recursiveMap(child)[0]) : null
     );
-
     if (Platform.isTVOS) {
         return (
-            <TVOSSnapScrollView ref={ref} {...props} snapPoints={propsSnapPoints || snapPoints}>
+            <TVOSSnapScrollView
+                ref={scrollViewRef}
+                {...props}
+                snapPoints={propsSnapPoints || snapPoints}
+            >
                 {content}
             </TVOSSnapScrollView>
         );
@@ -58,7 +65,7 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
     if (Platform.OS === 'android' && Platform.isTV) {
         return (
             <AndroidTVSnapScrollView
-                ref={ref}
+                ref={scrollViewRef}
                 {...props}
                 snapPoints={propsSnapPoints || snapPoints}
             >
@@ -68,7 +75,7 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
     }
 
     return (
-        <ScrollView ref={ref} {...props}>
+        <ScrollView ref={scrollViewRef} {...props}>
             {children}
         </ScrollView>
     );
