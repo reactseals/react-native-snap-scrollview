@@ -1,6 +1,6 @@
 const React = require('react');
 import { requireNativeComponent, findNodeHandle, StyleSheet, Image, View, Platform, UIManager } from "react-native";
-import ScrollResponder from 'react-native-snap-scrollview/ScrollResponder';
+import ScrollResponder from './ScrollResponder';
 const ScrollViewStickyHeader = require('react-native/Libraries/Components/ScrollView/ScrollViewStickyHeader');
 const dismissKeyboard = require('react-native/Libraries/Utilities/dismissKeyboard');
 const invariant = require('invariant');
