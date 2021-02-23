@@ -1,7 +1,5 @@
 import React, { useState, useImperativeHandle, useRef } from 'react';
-import { ScrollView, Platform } from 'react-native';
-import AndroidTVSnapScrollView from './index.androidtv';
-import TVOSSnapScrollView from './index.tvos';
+import SnapScrollView from './SnapScrollView';
 
 let snapPointsHolder = {};
 
@@ -50,35 +48,16 @@ const SV = React.forwardRef(({ children, snapPoints: propsSnapPoints, ...props }
     const content = React.Children.map(children, child =>
         child ? React.cloneElement(recursiveMap(child)[0]) : null
     );
-    if (Platform.isTVOS) {
-        return (
-            <TVOSSnapScrollView
-                ref={scrollViewRef}
-                {...props}
-                snapPoints={propsSnapPoints || snapPoints}
-            >
-                {content}
-            </TVOSSnapScrollView>
-        );
-    }
-
-    if (Platform.OS === 'android' && Platform.isTV) {
-        return (
-            <AndroidTVSnapScrollView
-                ref={scrollViewRef}
-                {...props}
-                snapPoints={propsSnapPoints || snapPoints}
-            >
-                {content}
-            </AndroidTVSnapScrollView>
-        );
-    }
 
     return (
-        <ScrollView ref={scrollViewRef} {...props}>
-            {children}
-        </ScrollView>
-    );
+            <SnapScrollView
+                ref={scrollViewRef}
+                {...props}
+                snapPoints={propsSnapPoints || snapPoints}
+            >
+                {content}
+            </SnapScrollView>
+        );
 });
 
 export default SV;
