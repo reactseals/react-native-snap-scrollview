@@ -3,7 +3,7 @@
     "title": "React Native Snap Scrollview",
     "version": "1.1.1",
     "description": "Snap scrollview for React Native",
-    "main": "index.js",
+    "main": "index",
     "scripts": {
         "publish-package": "npm publish --access public"
     },
