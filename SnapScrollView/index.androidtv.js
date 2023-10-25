@@ -6,7 +6,8 @@ const dismissKeyboard = require('react-native/Libraries/Utilities/dismissKeyboar
 const invariant = require('invariant');
 const splitLayoutProps = require('react-native/Libraries/StyleSheet/splitLayoutProps');
 const processDecelerationRate = require('react-native/Libraries/Components/ScrollView/processDecelerationRate');
-const AnimatedImplementation = require('react-native/Libraries/Animated/src/AnimatedImplementation');
+// react-native-tvos > 0.64.2-0
+const AnimatedImplementation = require('react-native/Libraries/Animated/AnimatedImplementation');
 
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
